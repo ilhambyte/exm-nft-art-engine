@@ -1,34 +1,34 @@
 # NFT Art Engine 🔥
 
-Create generative art by using the canvas api and node js. Before you use the generation engine, make sure you have node.js(v10.18.0) installed.
+Buat seni generatif dengan menggunakan api kanvas dan node js. Sebelum Anda menggunakan mesin generasi, pastikan Anda telah menginstal node.js(v10.18.0).
 
-## Installation 🛠️
+## Instalasi 🛠️
 
-If you are cloning the project then run this first, otherwise you can download the source code on the release page and skip this step.
+Jika Anda ingin mengkloning proyek, jalankan ini terlebih dahulu, jika tidak, Anda dapat mengunduh kode sumber di halaman rilis dan lewati langkah ini.
 
 ```sh
 git clone https://github.com/ilhambyte/exm-nft-art-engine.git
 ```
 
-Go to the root of your folder and run this command if you have yarn installed.
+Buka root folder Anda dan jalankan perintah ini jika Anda telah menginstal benang.
 
 ```sh
 yarn install
 ```
 
-Alternatively you can run this command if you have node installed.
+Atau Anda dapat menjalankan perintah ini jika Anda telah menginstal node.
 
 ```sh
 npm install
 ```
 
-## Usage ℹ️
+## Penggunaan ℹ️
 
-Create your different layers as folders in the 'layers' directory, and add all the layer assets in these directories. You can name the assets anything as long as it has a rarity weight attached in the file name like so: `example element#70.png`. You can optionally change the delimiter `#` to anything you would like to use in the variable `rarityDelimiter` in the `src/config.js` file.
+Buatlah layer Anda yang berbeda sebagai folder di 'layers' direktori, dan tambahkan semua aset layer di direktori ini. Anda dapat memberi nama aset apa saja asalkan memiliki bobot kelangkaan yang dilampirkan dalam nama file seperti ini: `example element#70.png`. Anda dapat mengubah pembatas secara opsional `#` untuk apa pun yang ingin Anda gunakan dalam variabel `rarityDelimiter` didalam file `src/config.js` .
 
-Once you have all your layers, go into `src/config.js` and update the `layerConfigurations` objects `layersOrder` array to be your layer folders name in order of the back layer to the front layer.
+Setelah Anda memiliki semua layer Anda, lalu masuk ke `src/config.js` dan update pada `layerConfigurations` objects `layersOrder` array menjadi nama folder layer Anda dengan urutan layer belakang ke layer depan.
 
-_Example:_ If you were creating a portrait design, you might have a background, then a head, a mouth, eyes, eyewear, and then headwear, so your `layersOrder` would look something like this:
+_Contoh:_ Jika Anda membuat desain potret, Anda mungkin harus memiliki latar belakang, lalu kepala, mulut, mata, kacamata, dan kemudian penutup kepala, jadi pada bagian `layersOrder` akan terlihat seperti ini:
 
 ```js
 const layerConfigurations = [
@@ -45,11 +45,11 @@ const layerConfigurations = [
 ];
 ```
 
-The `name` of each layer object represents the name of the folder (in `/layers/`) that the images reside in.
+Bagian `name` dari setiap objek layer mewakili nama folder di ( `/layers/`) tempat gambar berada.
 
-Optionally you can now add multiple different `layerConfigurations` to your collection. Each configuration can be unique and have different layer orders, use the same layers or introduce new ones. This gives the artist flexibility when it comes to fine tuning their collections to their needs.
+Secara opsional, Anda sekarang dapat menambahkan beberapa yang perbedaan `layerConfigurations` untuk koleksi Anda. Setiap konfigurasi dapat unik dan memiliki urutan layer yang berbeda, menggunakan layer yang sama atau menambahkan yang baru. Hal ini memberikan fleksibilitas kepada seniman/artist dalam hal menyesuaikan koleksi mereka dengan kebutuhan mereka.
 
-_Example:_ If you were creating a portrait design, you might have a background, then a head, a mouth, eyes, eyewear, and then headwear and you want to create a new race or just simple re-order the layers or even introduce new layers, then you're `layerConfigurations` and `layersOrder` would look something like this:
+_Contoh:_ Jika Anda membuat desain potret, Anda mungkin memiliki latar belakang, lalu kepala, mulut, mata, kacamata, dan kemudian penutup kepala dan Anda ingin membuat ras baru atau sekadar menyusun ulang layer atau bahkan menambahkan layer baru, maka kamu masuk ke `layerConfigurations` dan `layersOrder` akan terlihat seperti ini:
 
 ```js
 const layerConfigurations = [
@@ -81,21 +81,21 @@ const layerConfigurations = [
 ];
 ```
 
-Update your `format` size, ie the outputted image size, and the `growEditionSizeTo` on each `layerConfigurations` object, which is the amount of variation outputted.
+Perbarui ukuran `format` Anda, yaitu ukuran gambar yang dihasilkan, dan `growEditionSizeTo` pada setiap objek `layerConfigurations`, yang merupakan jumlah variasi yang dihasilkan.
 
-You can mix up the `layerConfigurations` order on how the images are saved by setting the variable `shuffleLayerConfigurations` in the `config.js` file to true. It is false by default and will save all images in numerical order.
+Anda dapat mencampuradukkan urutan `layerConfigurations` tentang bagaimana gambar disimpan dengan menyetel variabel `shuffleLayerConfigurations` dalam file `config.js` ke true. Secara default ini false dan akan menyimpan semua gambar dalam urutan numerik.
 
-If you want to have logs to debug and see what is happening when you generate images you can set the variable `debugLogs` in the `config.js` file to true. It is false by default, so you will only see general logs.
+Jika Anda ingin memiliki log untuk di-debug dan melihat apa yang terjadi saat Anda menghasilkan gambar, Anda dapat menyetel variabel `debugLogs` dalam file `config.js` ke true. Secara default ini false, jadi Anda hanya akan melihat log umum.
 
-If you want to play around with different blending modes, you can add a `blend: MODE.colorBurn` field to the layersOrder `options` object.
+Jika Anda ingin bermain-main dengan mode pencampuran yang berbeda, Anda dapat menambahkan `blend: MODE.colorBurn` ke objek `options` layersOrder.
 
-If you need a layers to have a different opacity then you can add the `opacity: 0.7` field to the layersOrder `options` object as well.
+Jika Anda membutuhkan layer untuk memiliki opacity yang berbeda maka Anda dapat menambahkan bidang `opacity: 0.7` ke objek `options` layersOrder juga.
 
-If you want to have a layer _ignored_ in the DNA uniqueness check, you can set `bypassDNA: true` in the `options` object. This has the effect of making sure the rest of the traits are unique while not considering the `Background` Layers as traits, for example. The layers _are_ included in the final image.
+Jika Anda ingin layer diabaikan dalam pemeriksaan keunikan DNA, Anda dapat mengatur `bypassDNA: true` di objek `options` . Ini memiliki efek untuk memastikan ciri-ciri lainnya unik sementara tidak mempertimbangkan Layer `Background` sebagai ciri, misalnya. Layer termasuk dalam gambar akhir.
 
-To use a different metadata attribute name you can add the `displayName: "Awesome Eye Color"` to the `options` object. All options are optional and can be addes on the same layer if you want to.
+Untuk menggunakan nama atribut metadata yang berbeda, Anda dapat menambahkan `displayName: "Awesome Eye Color"` ke objek `options`. Semua opsi bersifat opsional dan dapat ditambahkan pada lapisan yang sama jika Anda mau.
 
-Here is an example on how you can play around with both filter fields:
+Berikut adalah contoh bagaimana Anda dapat bermain-main dengan kedua bidang filter:
 
 ```js
 const layerConfigurations = [
@@ -125,7 +125,7 @@ const layerConfigurations = [
 ];
 ```
 
-Here is a list of the different blending modes that you can optionally use.
+Berikut adalah daftar berbagai mode pencampuran yang dapat Anda gunakan secara opsional.
 
 ```js
 const MODE = {
@@ -158,19 +158,19 @@ const MODE = {
 };
 ```
 
-When you are ready, run the following command and your outputted art will be in the `build/images` directory and the json in the `build/json` directory:
+Saat Anda siap, jalankan perintah berikut dan hasil seni Anda akan berada di direktori `build/images` dan json di direktori `build/json`:
 
 ```sh
 npm run build
 ```
 
-or
+atau
 
 ```sh
 node index.js
 ```
 
-The program will output all the images in the `build/images` directory along with the metadata files in the `build/json` directory. Each collection will have a `_metadata.json` file that consists of all the metadata in the collection inside the `build/json` directory. The `build/json` folder also will contain all the single json files that represent each image file. The single json file of a image will look something like this:
+Program akan menampilkan semua gambar di direktori `build/images` bersama dengan file metadata di direktori `build/json` . Setiap koleksi akan memiliki file `_metadata.json` yang terdiri dari semua metadata dalam koleksi di dalam direktori `build/json` . Folder `build/json` juga akan berisi semua file json tunggal yang mewakili setiap file gambar. File json tunggal dari sebuah gambar akan terlihat seperti ini:
 
 ```json
 {
@@ -193,7 +193,7 @@ The program will output all the images in the `build/images` directory along wit
 }
 ```
 
-You can also add extra metadata to each metadata file by adding your extra items, (key: value) pairs to the `extraMetadata` object variable in the `config.js` file.
+Anda juga dapat menambahkan `extraMetadata` ke setiap file metadata dengan menambahkan item tambahan, (key: value) berpasangan ke variabel objek `extraMetadata` di file `config.js` .
 
 ```js
 const extraMetadata = {
@@ -201,44 +201,43 @@ const extraMetadata = {
 };
 ```
 
-If you don't need extra metadata, simply leave the object empty. It is empty by default.
+Jika Anda tidak membutuhkan metadata tambahan, biarkan objek kosong. Secara default itu kosong.
 
 ```js
 const extraMetadata = {};
 ```
 
-That's it, you're done.
+Itu saja, Anda sudah selesai.
 
-## Utils
+## Utilitas
 
-### Updating baseUri for IPFS and description
+### Memperbarui baseUri untuk IPFS dan deskripsi
 
-You might possibly want to update the baseUri and description after you have ran your collection. To update the baseUri and description simply run:
+Anda mungkin ingin memperbarui baseUri dan deskripsi setelah Anda menjalankan koleksi Anda. Untuk memperbarui baseUri dan deskripsi cukup jalankan:
 
 ```sh
 npm run update_info
 ```
 
-### Generate a preview image
+### Hasilkan gambar pratinjau
 
-Create a preview image collage of your collection, run:
+Buat kolase gambar pratinjau dari koleksi Anda, jalankan:
 
 ```sh
 npm run preview
 ```
 
-### Generate pixelated images from collection
+### Hasilkan gambar pixel dari koleksi
 
-In order to convert images into pixelated images you would need a list of images that you want to convert. So run the generator first.
+Untuk mengonversi gambar menjadi gambar berpiksel, Anda memerlukan daftar gambar yang ingin Anda konversi. Jadi jalankan generatornya terlebih dahulu.
 
-Then simply run this command:
+Kemudian cukup jalankan perintah ini:
 
 ```sh
 npm run pixelate
 ```
 
-All your images will be outputted in the `/build/pixel_images` directory.
-If you want to change the ratio of the pixelation then you can update the ratio property on the `pixelFormat` object in the `src/config.js` file. The lower the number on the left, the more pixelated the image will be.
+Semua gambar Anda akan tampilkan di direktori `/build/pixel_images` . Jika Anda ingin mengubah rasio pikselasi, Anda dapat memperbarui properti rasio pada objek `pixelFormat` di file `src/config.js` . Semakin rendah angka di sebelah kiri, semakin banyak piksel pada gambarnya.
 
 ```js
 const pixelFormat = {
@@ -246,12 +245,11 @@ const pixelFormat = {
 };
 ```
 
-### Generate GIF images from collection
+### Hasilkan gambar GIF dari koleksi
 
-In order to export gifs based on the layers created, you just need to set the export on the `gif` object in the `src/config.js` file to `true`. You can also play around with the `repeat`, `quality` and the `delay` of the exported gif.
+Untuk mengekspor gif berdasarkan lapisan yang dibuat, Anda hanya perlu mengatur ekspor pada objek `gif` di file `src/config.js` ke `true` . Anda juga dapat bermain-main dengan `repeat`, `quality` dan `delay` gif yang diekspor.
 
-Setting the `repeat: -1` will produce a one time render and `repeat: 0` will loop forever.
-
+Mengatur `repeat: -1` akan menghasilkan render satu kali dan `repeat: 0` akan berulang-ulang selamanya.
 ```js
 const gif = {
   export: true,
@@ -261,15 +259,15 @@ const gif = {
 };
 ```
 
-### Printing rarity data (Experimental feature)
+### Mencetak data kelangkaan (Fitur eksperimental)
 
-To see the percentages of each attribute across your collection, run:
+Untuk melihat persentase setiap atribut di seluruh koleksi Anda, jalankan:
 
 ```sh
 npm run rarity
 ```
 
-The output will look something like this:
+Outputnya akan terlihat seperti ini:
 
 ```sh
 Trait type: Top lid
@@ -290,4 +288,7 @@ Trait type: Top lid
 }
 ```
 
-Hope you create some awesome artworks with this code 👄
+Terima kasih, Semoga Anda membuat beberapa karya seni yang luar biasa dengan kode ini 👄
+
+Referensi: 
+- HashLips
